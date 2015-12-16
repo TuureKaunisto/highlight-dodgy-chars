@@ -1,6 +1,8 @@
-# Highlight bad non-ascii characters in Sublime Text 3
+# Highlight non-ascii characters in Sublime Text 3
 
-This plugin highlights non-printable characters excluding whitelisted characters.
+This plugin highlights non-printable characters excluding whitelisted characters. It makes control characters, zero width spaces, full width colons and other dangerous characters that might break your code visible.
+
+![The plugin highlights bad characters in the editor](screen-shot.png "The plugin highlights dodgy characters")
 
 By default the Scandinavian special characters and the euro sign: åäöæø€ are whitelisted. The whitelisted characters can be edited in the settings.
 
