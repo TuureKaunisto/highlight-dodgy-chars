@@ -2,7 +2,7 @@
 
 This plugin highlights non-printable characters excluding whitelisted characters. It makes control characters, zero width spaces, full width colons and other dangerous characters that might break your code visible.
 
-![The plugin highlights bad characters in the editor](screen-shot.png "The plugin highlights dodgy characters")
+<img src="screen-shot.png" alt="The plugin highlights bad characters in the editor" title="The plugin highlights dodgy characters" width="404">
 
 By default the Scandinavian special characters and the euro sign: åäöæø€ are whitelisted. The whitelisted characters can be edited in the settings.
 
