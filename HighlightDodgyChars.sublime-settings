@@ -1,0 +1,4 @@
+{
+	// whitelist Scandinavian special chars
+    "whitelist_chars": "åäöæø€"
+}
