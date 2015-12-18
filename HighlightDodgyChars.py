@@ -11,8 +11,15 @@ class HighlightDodgyChars(sublime_plugin.EventListener):
     def getSettings():
         global users_whitelist
         settings = sublime.load_settings('HighlightDodgyChars.sublime-settings')
-        users_whitelist = settings.get('whitelist_chars').lower()
-        users_whitelist += users_whitelist.upper() # for some reason the sublime.IGNORECASE -flag did not work :(
+
+        users_whitelist = settings.get('whitelist_chars')
+
+        if isinstance(users_whitelist, list):
+            users_whitelist = "".join(users_whitelist)
+
+        # for some reason the sublime.IGNORECASE -flag did not work so lets
+        # duplicate the chars as lower and upper :(
+        users_whitelist += users_whitelist.upper()
 
     def on_modified_async(self, view):
         self.highlight(view)
@@ -24,7 +31,8 @@ class HighlightDodgyChars(sublime_plugin.EventListener):
     def highlight(self, view):
         highlights = []
         whitelist = u'\n´\u0009' # allow newline, forward-tick and tabulator
-        needle = '[^[:print:]'+whitelist+users_whitelist+']' # non-printable chars except whitelisted
+        # search for non-ascii characters that are not on the whitelist
+        needle = '[^\x00-\x7F'+whitelist+users_whitelist+']'
 
         # search the view
         for pos in view.find_all(needle):

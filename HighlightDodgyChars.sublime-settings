@@ -1,4 +1,10 @@
 {
-	// whitelist Scandinavian special chars
-    "whitelist_chars": "åäöæø€"
+	"default": {
+	    "whitelist_chars": [
+	    	// Currencies
+	    	"€£",
+	    	//European characters ( http://fasforward.com/list-of-european-special-characters/ )
+	    	"¡¿äàáâãåǎąăæçćĉčđďðèéêëěęĝģğĥìíîïıĵķĺļłľñńňöòóôõőøœŕřẞßśŝşšșťţþțüùúûűũųůŵýÿŷźžż"
+	    ]
+	}
 }
