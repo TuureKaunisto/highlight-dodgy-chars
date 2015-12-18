@@ -1,6 +1,6 @@
 [
     {
-        "id": "Preferences",
+        "id": "preferences",
         "children":
         [
             {
@@ -14,22 +14,16 @@
                         "children":
                         [
                             {
-                                "caption": "Highlight Dodgy Chars",
-                                "children":
-                                [
-                                    {
-                                        "command": "open_file",
-                                        "args": {"file": "${packages}/HighlightDodgyChars/HighlightDodgyChars.sublime-settings"},
-                                        "caption": "Settings - Default"
-                                    },
-                                    {
-                                        "command": "open_file",
-                                        "args": {"file": "${packages}User/HighlightDodgyChars.sublime-settings"},
-                                        "caption": "Settings - User"
-                                    },
-                                    { "caption": "-" }
-                                ]
-                            }
+                                "command": "open_file",
+                                "args": {"file": "${packages}/HighlightDodgyChars/HighlightDodgyChars.sublime-settings"},
+                                "caption": "Settings - Default"
+                            },
+                            {
+                                "command": "open_file",
+                                "args": {"file": "${packages}/User/HighlightDodgyChars.sublime-settings"},
+                                "caption": "Settings - User"
+                            },
+                            { "caption": "-" }
                         ]
                     }
                 ]

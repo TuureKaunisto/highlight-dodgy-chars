@@ -15,7 +15,10 @@ class HighlightDodgyChars(sublime_plugin.EventListener):
         users_whitelist = settings.get('whitelist_chars')
 
         if isinstance(users_whitelist, list):
-            users_whitelist = "".join(users_whitelist)
+            users_whitelist = ''.join(users_whitelist)
+
+        if users_whitelist is None:
+            users_whitelist = ''
 
         # for some reason the sublime.IGNORECASE -flag did not work so lets
         # duplicate the chars as lower and upper :(
@@ -40,6 +43,6 @@ class HighlightDodgyChars(sublime_plugin.EventListener):
 
         # if something dodgy was found, highlight the dodgy parts
         if highlights:
-            view.add_regions("zero-width-and-bad-chars", highlights, "invalid", "", sublime.DRAW_SOLID_UNDERLINE)
+            view.add_regions('zero-width-and-bad-chars', highlights, 'invalid', '', sublime.DRAW_SOLID_UNDERLINE)
         else:
-            view.erase_regions("zero-width-and-bad-chars") 
+            view.erase_regions('zero-width-and-bad-chars') 
