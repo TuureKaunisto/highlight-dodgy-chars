@@ -15,7 +15,7 @@
                         [
                             {
                                 "command": "open_file",
-                                "args": {"file": "${packages}/HighlightDodgyChars/HighlightDodgyChars.sublime-settings"},
+                                "args": {"file": "${packages}/Highlight Dodgy Chars/HighlightDodgyChars.sublime-settings"},
                                 "caption": "Settings - Default"
                             },
                             {
