@@ -1,8 +1,9 @@
 {
     "whitelist_chars": [
-    	// Currencies
+    	// currencies
     	"€£",
-    	//European characters ( http://fasforward.com/list-of-european-special-characters/ )
+    	// European characters ( http://fasforward.com/list-of-european-special-characters/ )
     	"¡¿äàáâãåǎąăæçćĉčđďðèéêëěęĝģğĥìíîïıĵķĺļłľñńňöòóôõőøœŕřẞßśŝşšșťţþțüùúûűũųůŵýÿŷźžż"
+    	// you'll most likely need to restart sublime after editing these settings
     ]
 }
