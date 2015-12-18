@@ -1,10 +1,8 @@
 {
-	"default": {
-	    "whitelist_chars": [
-	    	// Currencies
-	    	"€£",
-	    	//European characters ( http://fasforward.com/list-of-european-special-characters/ )
-	    	"¡¿äàáâãåǎąăæçćĉčđďðèéêëěęĝģğĥìíîïıĵķĺļłľñńňöòóôõőøœŕřẞßśŝşšșťţþțüùúûűũųůŵýÿŷźžż"
-	    ]
-	}
+    "whitelist_chars": [
+    	// Currencies
+    	"€£",
+    	//European characters ( http://fasforward.com/list-of-european-special-characters/ )
+    	"¡¿äàáâãåǎąăæçćĉčđďðèéêëěęĝģğĥìíîïıĵķĺļłľñńňöòóôõőøœŕřẞßśŝşšșťţþțüùúûűũųůŵýÿŷźžż"
+    ]
 }
