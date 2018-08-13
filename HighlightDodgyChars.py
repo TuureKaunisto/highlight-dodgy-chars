@@ -43,6 +43,6 @@ class HighlightDodgyChars(sublime_plugin.EventListener):
 
         # if something dodgy was found, highlight the dodgy parts
         if highlights:
-            view.add_regions('zero-width-and-bad-chars', highlights, 'invalid', '', sublime.DRAW_SOLID_UNDERLINE)
+            view.add_regions('zero-width-and-bad-chars', highlights, 'invalid', 'dot', sublime.DRAW_EMPTY)
         else:
             view.erase_regions('zero-width-and-bad-chars') 
