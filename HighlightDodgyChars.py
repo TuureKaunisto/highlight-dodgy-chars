@@ -1,48 +1,58 @@
 import sublime, sublime_plugin
-users_whitelist = ''
-
-def plugin_loaded():
-    # Is there a way to get a reference to the plugin instance here?
-    # It would be nice to avoid having to use the global user_whitelist variable.
-    HighlightDodgyChars.getSettings()
 
 class HighlightDodgyChars(sublime_plugin.EventListener): 
+    def on_activated(self, view):
+        self.get_settings()
+        self.view = view
+        self.has_been_modified = False
+        self.delay_update = False
 
-    def getSettings():
-        global users_whitelist
+        self.phantom_set = sublime.PhantomSet(view)
+        # highlight dodgy characters when the file is opened
+        self.highlight()
+
+    def get_settings(self):
         settings = sublime.load_settings('HighlightDodgyChars.sublime-settings')
 
-        users_whitelist = settings.get('whitelist_chars')
+        self.whitelist = settings.get('whitelist_chars')
 
-        if isinstance(users_whitelist, list):
-            users_whitelist = ''.join(users_whitelist)
+        if isinstance(self.whitelist, list):
+            self.whitelist = ''.join(self.whitelist)
 
-        if users_whitelist is None:
-            users_whitelist = ''
+        if self.whitelist is None:
+            self.whitelist = ''
 
         # for some reason the sublime.IGNORECASE -flag did not work so lets
         # duplicate the chars as lower and upper :(
-        users_whitelist += users_whitelist.upper()
+        self.whitelist += self.whitelist.upper()
 
     def on_modified_async(self, view):
-        self.highlight(view)
+        # call highlight max 4 times a second
+        if self.delay_update:
+            # if a modification happens during cooldown, an update is needed afterwards
+            self.has_been_modified = True
+        else:
+            self.highlight()
+            # 250 ms cooldown
+            self.delay_update = True
+            sublime.set_timeout(self.end_cooldown, 250)
 
-    def on_load_async(self, view):
-        # load highlights as soon as the file is opened
-        self.highlight(view)
+    def end_cooldown(self):
+        self.delay_update = False;
+        if self.has_been_modified:
+            self.has_been_modified = False;
+            self.highlight()
 
-    def highlight(self, view):
-        highlights = []
-        whitelist = u'\n´\u0009' # allow newline, forward-tick and tabulator
+    def highlight(self):
+        phantoms = []
+        # allow newline, forward-tick and tabulator
+        default_whitelist = u'\n´\u0009'
         # search for non-ascii characters that are not on the whitelist
-        needle = '[^\x00-\x7F'+whitelist+users_whitelist+']'
+        needle = '[^\x00-\x7F' + default_whitelist + self.whitelist + ']'
 
         # search the view
-        for pos in view.find_all(needle):
-            highlights.append(pos)
+        for pos in self.view.find_all(needle):
+            phantoms.append(sublime.Phantom(pos, '<span style="color: var(--pinkish);">!</span>', sublime.LAYOUT_INLINE))
 
         # if something dodgy was found, highlight the dodgy parts
-        if highlights:
-            view.add_regions('zero-width-and-bad-chars', highlights, 'invalid', 'dot', sublime.DRAW_EMPTY)
-        else:
-            view.erase_regions('zero-width-and-bad-chars') 
+        self.phantom_set.update(phantoms);
