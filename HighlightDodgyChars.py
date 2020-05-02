@@ -9,7 +9,6 @@ class HighlightDodgyChars(sublime_plugin.EventListener):
         self.has_been_modified = False
         self.delay_update = False
 
-        self.phantom_set = sublime.PhantomSet(view)
         # highlight dodgy characters when the file is opened
         self.highlight()
 
@@ -46,15 +45,9 @@ class HighlightDodgyChars(sublime_plugin.EventListener):
             self.highlight()
 
     def highlight(self):
-        phantoms = []
         # allow newline, forward-tick and tabulator
         default_whitelist = u'\n´\u0009'
         # search for non-ascii characters that are not on the whitelist
         needle = '[^\x00-\x7F' + default_whitelist + self.whitelist + ']'
-
-        # search the view
-        for pos in self.view.find_all(needle):
-            phantoms.append(sublime.Phantom(pos, '<span style="color: var(--pinkish);">!</span>', sublime.LAYOUT_INLINE))
-
-        # if something dodgy was found, highlight the dodgy parts
-        self.phantom_set.update(phantoms);
+        
+        self.view.add_regions('HighlightDodgyCharsRegion', self.view.find_all(needle), "invalid", "", sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE
