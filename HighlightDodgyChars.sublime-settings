@@ -5,5 +5,9 @@
     	// European characters ( http://fasforward.com/list-of-european-special-characters/ )
     	"¡¿äàáâãåǎąăæçćĉčđďðèéêëěęĝģğĥìíîïıĵķĺļłľñńňöòóôõőøœŕřẞßśŝşšșťţþțüùúûűũųůŵýÿŷźžż"
     	// you'll most likely need to restart sublime after editing these settings
-    ]
+    ],
+
+    // Syntaxes the plugin should not highlight, by the name shown in the
+    // status bar. Not case sensitive. For example: ["Plain Text", "Markdown"]
+    "disabled_syntaxes": []
 }
