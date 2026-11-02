@@ -8,6 +8,13 @@ By default the European special characters are whitelisted. The whitelisted char
 
 `Sublime Text > Preferences > Package Settings > Highlight Dodgy Chars > Settings - User`
 
+To turn the plugin off for specific syntaxes, list them by the name shown in the status bar:
+```json
+{
+    "disabled_syntaxes": ["Plain Text", "Markdown"]
+}
+```
+
 ## Installing
 
 The easiest way to install this plugin is with the **Package Control plugin** If you don't have Package Control installed, you can find instructions here: [https://packagecontrol.io/installation](https://packagecontrol.io/installation)
